@@ -1,0 +1,54 @@
+{
+  "name": "review-rule-check",
+  "version": "0.1.0",
+  "description": "Check the text of a Trustpilot or Google review against the platform's published rules. A transparent heuristic: the platform decides.",
+  "keywords": [
+    "trustpilot",
+    "google-reviews",
+    "review-moderation",
+    "reviews",
+    "policy",
+    "heuristic",
+    "cli"
+  ],
+  "license": "MIT",
+  "author": "Remove One Star (https://www.removeonestar.com)",
+  "homepage": "https://www.removeonestar.com/developers/review-rule-check",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/removeonestar/review-rule-check.git"
+  },
+  "bugs": {
+    "url": "https://github.com/removeonestar/review-rule-check/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "review-rule-check": "bin/review-rule-check.mjs"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && node scripts/cjs-marker.mjs",
+    "test": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-include='src/**' 'test/*.test.ts'",
+    "prepublishOnly": "npm run build && npm test"
+  }
+}
